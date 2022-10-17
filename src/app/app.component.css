@@ -1,0 +1,17 @@
+.container {
+  height: 80vh;
+  padding: 10vh;
+  overflow: hidden;
+}
+
+.aaaa {
+  height: 400px;
+  /* width: 550px; */
+  /* width: 100%; */
+  max-width: 100%;
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+}

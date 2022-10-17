@@ -1,0 +1,79 @@
+<!-- cdkScrollable -->
+<div class="card-container" class="container">
+
+  <!-- <div class="aaaa" cdkVirtualScrollingElement> -->
+
+  <cdk-virtual-scroll-viewport class="aaaa" itemSize="50" #viewPort>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table" matSort (matSortChange)="sortChange($event)"
+      cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"
+      (scroll)="onTableScroll($event)">
+
+      <ng-container matColumnDef="checkbox">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable><app-test [(checked)]="element.checked"></app-test></td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag> ID </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag> Title </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="group">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.group}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sex">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sex </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.sex}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.birthdate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+        <td mat-cell *matCellDef="let element" cdkVirtualScrollable> {{element.companyName}} </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- GROUP -->
+      <ng-container matColumnDef="groupHeader">
+        <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th> -->
+        <td mat-cell *matCellDef="let group" cdkVirtualScrollable colspan="999">
+
+          <mat-icon *ngIf="group.isExpanded">expand_less</mat-icon>
+          <mat-icon *ngIf="!group.isExpanded">expand_more</mat-icon>
+          <strong>{{group.title}}</strong>
+        </td>
+      </ng-container>
+
+      <tr mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup" (click)="groupHeaderClick(row)">
+      <tr>
+
+    </table>
+
+  </cdk-virtual-scroll-viewport>
+  <!-- </div> -->
+</div>
